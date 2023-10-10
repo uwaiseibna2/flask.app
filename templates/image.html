@@ -27,14 +27,6 @@
             <th>Property</th>
             <th>Value</th>
         </tr>
-        <tr>
-            <td>Image Name</td>
-            <td>{{ filename }}</td>
-        </tr>
-        <tr>
-            <td>Size</td>
-            <td>{{ image_size }} bytes</td>
-        </tr>
         {% for key, value in image_metadata.items() %}
             <tr>
                 <td>{{ key }}</td>
@@ -45,7 +37,7 @@
     
     <a href="{{ url_for('download', filename=filename) }}">Download Image</a>
     <br>
-    <img src="{{ url_for('download', filename=filename) }}" alt="{{ filename }}">
+    <img src={{gcs_url}} alt="{{ filename }}">
 </body>
 </html>
 
