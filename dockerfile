@@ -14,7 +14,7 @@ RUN pip install --trusted-host pypi.python.org -r requirements.txt
 RUN pip install pytest coverage
 
 # Run unit tests
-RUN pytest tests/
+RUN pytest test.py
 
 # Stage 2: Production image
 FROM python:3.8-slim
