@@ -16,10 +16,10 @@ app.secret_key = os.environ.get('FLASK_SECRET_KEY')
 db_user = os.environ.get('DB_USER')
 db_password = os.environ.get('DB_PASSWORD')
 db_name = os.environ.get('DB_NAME')
-
+cloud_sql_connection_name = os.environ.get('CLOUD_SQL_CONNECTION_NAME')
 
 # Use the fetched credentials to form the SQLAlchemy database URI
-db_uri = f'mysql+pymysql://{db_user}:{db_password}@/{db_name}?unix_socket=/cloudsql/{db_name}'
+db_uri = f'mysql+pymysql://{db_user}:{db_password}@/{db_name}?unix_socket=/cloudsql/{cloud_sql_connection_name}'
 
 # Update the configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
