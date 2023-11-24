@@ -97,7 +97,7 @@ def home():
 
     return render_template('home.html', image_files=user_images, username=current_user.username)
 
-
+@login_required
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
