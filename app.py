@@ -14,9 +14,8 @@ bucket_name='project-2-images'
 app = Flask(__name__)
 app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'your_secret_key_here')
 
-# Configuration for SQLite database
-# Configuration for MySQL with public IP
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:finalCloud2023@34.48.30.226/group-21-project-2:us-east4:final-project'
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://dbuser:passdbflask@/group-21-project-2:us-east4:final-project?unix_socket=/cloudsql/group-21-project-2:us-east4:final-project'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
