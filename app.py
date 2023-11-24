@@ -12,7 +12,7 @@ from PIL.ExifTags import TAGS
 from google.cloud import storage
 bucket_name='project-2-images'
 app = Flask(__name__)
-app.secret_key = 'your_secret_key_here'  # Set your secret key for session security
+app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'your_secret_key_here')
 
 # Configuration for SQLite database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
