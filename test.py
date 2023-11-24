@@ -10,7 +10,7 @@ class FlaskAppTest(unittest.TestCase):
     def test_index_page(self):
         response = self.app.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Image Gallery', response.data)
+        self.assertIn(b'Login', response.data)
 
     # Add more test cases for your application
 
