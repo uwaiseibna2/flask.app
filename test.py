@@ -7,7 +7,7 @@ class TestFlaskApp(unittest.TestCase):
         self.app_context = app.app_context()
         self.app_context.push()
         app.config['TESTING'] = True
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://final-project:finalCloud2023@34.48.30.226/group-21-project-2:us-east4:final-project'
         db.create_all()
 
         self.app = app.test_client()
