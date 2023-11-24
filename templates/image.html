@@ -38,6 +38,9 @@
     <a href="{{ url_for('download', filename=filename) }}">Download Image</a>
     <br>
     <img src={{gcs_url}} alt="{{ filename }}">
+    <form action="" method="POST">
+        <input type="submit" name="delete_image" value="Delete Image">
+    </form>
 </body>
 </html>
 
