@@ -91,13 +91,20 @@ def home():
     # Filter images to display only those associated with the current user
     user_images = []
     for blob in blobs:
-        associated_user_id = blob.metadata.get('associated_user')
-        if associated_user_id == current_user.username:
+        if blob.exists():
+            image_metadata = blob.metadata
+            associated_user = image_metadata.get('associated_user') if image_metadata else None
+        else:
+            # Handle the case when the blob doesn't exist
+            image_metadata = {'Status': 'Image not found in GCS bucket'}
+            associated_user = None 
+
+        if associated_user == current_user.username:
             user_images.append(blob.name)
 
     return render_template('home.html', image_files=user_images, username=current_user.username)
 
-@login_required
+
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
