@@ -12,11 +12,17 @@ from PIL.ExifTags import TAGS
 from google.cloud import storage
 bucket_name='project-2-images'
 app = Flask(__name__)
-app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'your_secret_key_here')
+app.secret_key = os.environ.get('FLASK_SECRET_KEY')
+db_user = os.environ.get('DB_USER')
+db_password = os.environ.get('DB_PASSWORD')
+db_name = os.environ.get('DB_NAME')
+cloud_sql_connection_name = os.environ.get('CLOUD_SQL_CONNECTION_NAME')
 
+# Use the fetched credentials to form the SQLAlchemy database URI
+db_uri = f'mysql+pymysql://{db_user}:{db_password}@/{db_name}?unix_socket=/cloudsql/{db_name}'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://dbuser:passdbflask@/group-21-project-2:us-east4:final-project?unix_socket=/cloudsql/group-21-project-2:us-east4:final-project'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# Update the configuration
+app.config['SQLALCHEMY_DATABASE_URI'] = db_uriapp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # Initialize Flask-Login
